@@ -8,6 +8,8 @@ class NewTodo extends StatefulWidget {
 }
 
 class _NewTodoState extends State<NewTodo> {
+  TimeOfDay? time = const TimeOfDay(hour: 0, minute: 0);
+  DateTime? date = DateTime.now();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,6 +32,79 @@ class _NewTodoState extends State<NewTodo> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             buildText('Titulo'),
+            const SizedBox(height: 8),
+            CalendarDatePicker(
+              initialDate: DateTime.now(),
+              firstDate: DateTime(2022),
+              lastDate: DateTime(2050),
+              onDateChanged: (newDate) {
+                date = newDate;
+              },
+            ),
+            const Padding(
+              padding: EdgeInsets.only(left: 8.0),
+              child: Text(
+                'Horário',
+                style: TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            GestureDetector(
+              onTap: () async {
+                TimeOfDay? newTime = await showTimePicker(
+                  context: context,
+                  initialTime: TimeOfDay.now(),
+                );
+                setState(() {
+                  if (newTime != null) time = newTime;
+                });
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: const Color(0xfffefefe),
+                    ),
+                    child: Center(
+                      child: Text(
+                        time!.hour.toString(),
+                        style: const TextStyle(
+                            fontSize: 40, fontWeight: FontWeight.w600),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 1),
+                    child: const Text(
+                      ':',
+                      style:
+                          TextStyle(fontSize: 30, fontWeight: FontWeight.w600),
+                    ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: const Color(0xfffefefe),
+                    ),
+                    child: Center(
+                      child: Text(
+                        time!.minute.toString(),
+                        style: const TextStyle(
+                          fontSize: 40,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
             const SizedBox(height: 8),
             buildText('Descrição'),
             const SizedBox(height: 8),
@@ -58,7 +133,7 @@ class _NewTodoState extends State<NewTodo> {
                   ),
                 ),
               ),
-            ),
+            )
           ],
         ),
       ),

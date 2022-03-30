@@ -40,9 +40,13 @@ class HomePage extends StatelessWidget {
               children: const [
                 ListItem(
                   title: 'Titulo',
+                  subtitle:
+                      'Sei lá, tanto faz o que tem escrito aqui... Não importa também',
                 ),
                 ListItem(
                   title: 'Titulo 1',
+                  subtitle:
+                      'Tanto faz 1, não ligo o que tem escrito aqui, só importa se tiver funcionando',
                 ),
               ],
             ),
