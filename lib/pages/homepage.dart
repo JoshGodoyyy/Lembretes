@@ -7,9 +7,35 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        backgroundColor: const Color(0xffefefef),
+        child: Column(
+          children: [
+            DrawerHeader(
+              //decoration: const BoxDecoration(color: Colors.blue),
+              child: Container(),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: ListTile(
+                title: const Text('Início'),
+                onTap: () {},
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: ListTile(
+                title: const Text('Ajuda'),
+                onTap: () {},
+              ),
+            ),
+          ],
+        ),
+      ),
       appBar: AppBar(
         elevation: 0,
         backgroundColor: const Color(0xffe5e5e5),
+        iconTheme: const IconThemeData(color: Colors.black),
         title: const Text(
           'Lembretes',
           style: TextStyle(
