@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:lembretes/widgets/listitem.dart';
 
-class HomePage extends StatelessWidget {
+import '../models/item_model.dart';
+
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  List<Items> items = [];
 
   @override
   Widget build(BuildContext context) {
@@ -12,22 +21,36 @@ class HomePage extends StatelessWidget {
         child: Column(
           children: [
             DrawerHeader(
-              //decoration: const BoxDecoration(color: Colors.blue),
-              child: Container(),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: ListTile(
-                title: const Text('Início'),
-                onTap: () {},
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Colors.purple,
+                    Colors.blue,
+                  ],
+                ),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: const [
+                  Text(
+                    'Josh Godoy',
+                    style: TextStyle(
+                      color: Color(0xffefefef),
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: ListTile(
-                title: const Text('Ajuda'),
-                onTap: () {},
-              ),
+            ListTile(
+              title: const Text('Início'),
+              onTap: () {},
+            ),
+            ListTile(
+              title: const Text('Ajuda'),
+              onTap: () {},
             ),
           ],
         ),
@@ -63,20 +86,11 @@ class HomePage extends StatelessWidget {
           Expanded(
             child: ListView(
               padding: const EdgeInsets.all(16),
-              children: const [
-                ListItem(
-                  title: 'Titulo',
-                  subtitle:
-                      'Sei lá, tanto faz o que tem escrito aqui... Não importa também',
-                ),
-                ListItem(
-                  title: 'Titulo 1',
-                  subtitle:
-                      'Tanto faz 1, não ligo o que tem escrito aqui, só importa se tiver funcionando',
-                ),
+              children: [
+                for (Items item in items) ListItem(item: item),
               ],
             ),
-          )
+          ),
         ],
       ),
     );

@@ -7,6 +7,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MaterialApp(
+        theme: ThemeData(),
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
         routes: {

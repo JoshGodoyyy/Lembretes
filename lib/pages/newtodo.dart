@@ -9,7 +9,7 @@ class NewTodo extends StatefulWidget {
 }
 
 class _NewTodoState extends State<NewTodo> {
-  TimeOfDay? _time = const TimeOfDay(hour: 13, minute: 30);
+  TimeOfDay? _time = TimeOfDay.now();
   DateTime? _date = DateTime.now();
 
   final _titleController = TextEditingController();
@@ -134,7 +134,8 @@ class _NewTodoState extends State<NewTodo> {
                 Items items = Items(
                   title: title,
                   dateTime: date,
-                  timeOfDay: time,
+                  hours: time.hour,
+                  minutes: time.minute,
                   description: description,
                 );
                 reminders.add(items);

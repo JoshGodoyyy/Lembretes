@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../models/item_model.dart';
+
 class ListItem extends StatelessWidget {
-  const ListItem({
-    Key? key,
-    required this.title,
-    required this.subtitle,
-  }) : super(key: key);
-  final String title;
-  final String subtitle;
+  const ListItem({Key? key, required this.item}) : super(key: key);
+
+  final Items item;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -27,7 +25,7 @@ class ListItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      title,
+                      item.title,
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -37,7 +35,8 @@ class ListItem extends StatelessWidget {
                       height: 8,
                     ),
                     Text(
-                      '23:00 - 28/03/2022',
+                      //'${item.timeOfDay.toString()} - ${item.dateTime}',
+                      '00:00',
                       style: TextStyle(
                         color: Colors.grey[500],
                         fontSize: 13,
@@ -47,7 +46,7 @@ class ListItem extends StatelessWidget {
                       height: 8,
                     ),
                     Text(
-                      subtitle,
+                      item.description,
                       style: TextStyle(
                         color: Colors.grey[700],
                         fontSize: 14,
